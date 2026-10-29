@@ -18,6 +18,8 @@ export function HomeNavbar() {
               <img
                 style={{ width: "125px", height: "30px" }}
                 src="/icons/burak.svg"
+                alt="
+                "
               />
             </NavLink>
           </Box>
@@ -71,7 +73,7 @@ export function HomeNavbar() {
                 </Button>
               </Box>
             ) : (
-              <img />
+              <img src="" alt="" />
             )}
           </Stack>
         </Stack>
