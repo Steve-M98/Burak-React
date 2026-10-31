@@ -8,18 +8,13 @@ export default function OtherNavbar() {
   return (
     <div className="other-navbar">
       <Container className="navbar-container">
-        <Stack className=" menu ">
+        <Stack className="menu">
           <Box>
             <NavLink to="/">
-              <img
-                className="brand-logo"
-                src="/icons/burak.svg"
-                alt="
-                "
-              />
+              <img className="brand-logo" src="/icons/bumarak.svg" />
             </NavLink>
           </Box>
-          <Stack className="links ">
+          <Stack className="links">
             <Box className={"hover-line"}>
               <NavLink to="/">Home</NavLink>
             </Box>
@@ -28,7 +23,6 @@ export default function OtherNavbar() {
                 Products
               </NavLink>
             </Box>
-
             {authMember ? (
               <Box className={"hover-line"}>
                 <NavLink to="/orders" activeClassName={"underline"}>
@@ -36,7 +30,6 @@ export default function OtherNavbar() {
                 </NavLink>
               </Box>
             ) : null}
-
             {authMember ? (
               <Box className={"hover-line"}>
                 <NavLink to="/member-page" activeClassName={"underline"}>
@@ -44,13 +37,13 @@ export default function OtherNavbar() {
                 </NavLink>
               </Box>
             ) : null}
-
             <Box className={"hover-line"}>
               <NavLink to="/help" activeClassName={"underline"}>
                 Help
               </NavLink>
             </Box>
             <Basket />
+
             {!authMember ? (
               <Box>
                 <Button variant="contained" className="login-button">
@@ -59,10 +52,9 @@ export default function OtherNavbar() {
               </Box>
             ) : (
               <img
-                src={"/icons/default-user.svg"}
                 className="user-avatar"
+                src={"/icons/default-user.svg"}
                 aria-haspopup={"true"}
-                alt=""
               />
             )}
           </Stack>

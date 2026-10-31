@@ -3,23 +3,18 @@ import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
 
 export default function HomeNavbar() {
-  const authMember = null;
+  const authMember = true;
 
   return (
     <div className="home-navbar">
       <Container className="navbar-container">
-        <Stack className=" menu ">
+        <Stack className="menu">
           <Box>
             <NavLink to="/">
-              <img
-                className="brand-logo"
-                src="/icons/burak.svg"
-                alt="
-                "
-              />
+              <img className="brand-logo" src="/icons/bumarak.svg" />
             </NavLink>
           </Box>
-          <Stack className="links ">
+          <Stack className="links">
             <Box className={"hover-line"}>
               <NavLink to="/" activeClassName={"underline"}>
                 Home
@@ -30,7 +25,6 @@ export default function HomeNavbar() {
                 Products
               </NavLink>
             </Box>
-
             {authMember ? (
               <Box className={"hover-line"}>
                 <NavLink to="/orders" activeClassName={"underline"}>
@@ -38,7 +32,6 @@ export default function HomeNavbar() {
                 </NavLink>
               </Box>
             ) : null}
-
             {authMember ? (
               <Box className={"hover-line"}>
                 <NavLink to="/member-page" activeClassName={"underline"}>
@@ -46,13 +39,13 @@ export default function HomeNavbar() {
                 </NavLink>
               </Box>
             ) : null}
-
             <Box className={"hover-line"}>
               <NavLink to="/help" activeClassName={"underline"}>
                 Help
               </NavLink>
             </Box>
             <Basket />
+
             {!authMember ? (
               <Box>
                 <Button variant="contained" className="login-button">
@@ -61,10 +54,9 @@ export default function HomeNavbar() {
               </Box>
             ) : (
               <img
-                src={"/icons/default-user.svg"}
                 className="user-avatar"
+                src={"/icons/default-user.svg"}
                 aria-haspopup={"true"}
-                alt=""
               />
             )}
           </Stack>
@@ -74,11 +66,11 @@ export default function HomeNavbar() {
             <Box className={"head-main-txt"}>
               World's Most Delicious Cousine
             </Box>
-            <Box className={"wel-txt"}> The Choice, not just a choice</Box>
-            <Box className={"service-txt"}>24 hours service </Box>
+            <Box className={"wel-txt"}>The Choice, not just a choice</Box>
+            <Box className={"service-txt"}>24 hours service</Box>
             <Box className={"signup"}>
               {!authMember ? (
-                <Button variant={"contained"} className={"signup-butt"}>
+                <Button variant={"contained"} className={"signup-button"}>
                   SIGN UP
                 </Button>
               ) : null}
