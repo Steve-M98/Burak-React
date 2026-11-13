@@ -1,9 +1,31 @@
 import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
+import React, { useEffect, useState } from "react";
 
 export default function HomeNavbar() {
   const authMember = null;
+
+  const [count, setCount] = useState<number>(0);
+  const [value, setValue] = useState<boolean>(true);
+
+  useEffect(() => {
+    console.log("componentDidMount");
+    setCount(count + 1);
+
+    return () => {
+      console.log("componentWillUnmount");
+    };
+  }, [value]); // bu [value] qo'yilmasa  useEffect faqat bir marta ishlaydi,
+  // [value] qo'yilsa har safar value o'zgarganda ishlaydi, [] ichiga nima o'zgarishi kutilsa shuni yozish kerak,
+  //  agar [] bo'sh bo'lsa faqat bir marta ishlaydi bu < componentDidUpdate > qismi  deyiladi
+
+  //**  HANDLERS **/
+
+  const buttonHandler = () => {
+    setValue(!value); // bizni kodimizda value ni qiymati true bolsa false ga,
+    //  false bo'lsa true ga o'zgaradi, shuning uchun useEffect button bosilganda qayta ishlaydi
+  };
 
   return (
     <div className="home-navbar">
@@ -57,6 +79,7 @@ export default function HomeNavbar() {
                 </Button>
               </Box>
             ) : (
+              // eslint-disable-next-line jsx-a11y/role-supports-aria-props
               <img
                 className="user-avatar"
                 src={"/icons/default-user.svg"}
@@ -72,10 +95,14 @@ export default function HomeNavbar() {
               World's Most Delicious Cousine
             </Box>
             <Box className={"wel-txt"}>The Choice, not just a choice</Box>
-            <Box className={"service-txt"}>24 hours service</Box>
+            <Box className={"service-txt"}> {count} hours service</Box>
             <Box className={"signup"}>
               {!authMember ? (
-                <Button variant={"contained"} className={"signup-button"}>
+                <Button
+                  variant={"contained"}
+                  className={"signup-button"}
+                  onClick={buttonHandler} //  bu 2-usulida yozilishi ===>  onClick={() => setCount(count + 1)}
+                >
                   SIGN UP
                 </Button>
               ) : null}
