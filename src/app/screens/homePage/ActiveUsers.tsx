@@ -5,10 +5,10 @@ import CardOverflow from "@mui/joy/CardOverflow";
 import AspectRatio from "@mui/joy/AspectRatio";
 
 const activeUsers = [
+  { memberNick: "Golden Olive", memberImage: "/img/gold_ol-rest.webp" },
+  { memberNick: "Dury", memberImage: "/img/Dury.webp" },
   { memberNick: "Martin", memberImage: "/img/martin.webp" },
-  { memberNick: "Justin", memberImage: "/img/justin.webp" },
-  { memberNick: "Rose", memberImage: "/img/rose.webp" },
-  { memberNick: "Nusret", memberImage: "/img/nusret.webp" },
+  { memberNick: "Steve", memberImage: "/img/Steve.webp" },
 ];
 
 export default function ActiveUsers() {
