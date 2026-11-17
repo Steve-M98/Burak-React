@@ -1,0 +1,6 @@
+{
+  "workbench.settings.useSplitJSON": true,
+  "workbench.colorCustomizations": {
+    "tab.activeBorderTop": "#00C8FF"
+  }
+}
