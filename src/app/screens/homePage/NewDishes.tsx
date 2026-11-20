@@ -37,7 +37,7 @@ export default function NewDishes() {
                   const imagePath = `${serverApi}/${product.productImages[0]}`;
                   const sizeVolume =
                     product.productCollection === ProductCollection.DRINK
-                      ? product.productVolume + "l"
+                      ? product.productVolume + " l"
                       : product.productSize + " size";
                   return (
                     <Card
