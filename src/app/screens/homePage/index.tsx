@@ -5,22 +5,22 @@ import NewDishes from "./NewDishes";
 import Advertisement from "./Advertisement";
 import ActiveUsers from "./ActiveUsers";
 import Events from "./Events";
-import "../../../css/home.css";
-
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
-import { setPopularDishes } from "./slice";
+import { setNewDishes, setPopularDishes } from "./slice";
 import { Product } from "../../../lib/types/product";
 import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
+import "../../../css/home.css";
 
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
   setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)),
+  setNewDishes: (data: Product[]) => dispatch(setNewDishes(data)),
 });
 
 export default function HomePage() {
-  const { setPopularDishes } = actionDispatch(useDispatch());
+  const { setPopularDishes, setNewDishes } = actionDispatch(useDispatch());
   // Selector: Storre => DATA
 
   useEffect(() => {
@@ -39,7 +39,19 @@ export default function HomePage() {
         setPopularDishes(data);
       })
       .catch((err) => console.log(err));
-    // Slice: DATA => Store
+
+    product
+      .getProduct({
+        page: 1,
+        limit: 4,
+        order: "createdAt",
+        productCollection: ProductCollection.DISH,
+      })
+      .then((data) => {
+        console.log("Data passed here:", data);
+        setNewDishes(data);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -52,7 +64,4 @@ export default function HomePage() {
       <Events />
     </div>
   );
-}
-function dispatch(arg0: { payload: any; type: "homePage/setPopularDishes" }) {
-  throw new Error("Function not implemented.");
 }

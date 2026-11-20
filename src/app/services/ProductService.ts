@@ -1,6 +1,6 @@
 import axios from "axios";
 import { serverApi } from "../../lib/config";
-import { ProductInquiry } from "../../lib/types/product";
+import { Product, ProductInquiry } from "../../lib/types/product";
 import { retrieveTopUsers } from "../screens/homePage/selector";
 
 class ProductService {
@@ -23,6 +23,7 @@ class ProductService {
       return result.data;
     } catch (err) {
       console.log("Error, getProducts:", err);
+      throw err;
     }
   }
 }
