@@ -40,7 +40,7 @@ export default function HomePage() {
         productCollection: ProductCollection.DISH,
       })
       .then((data) => {
-        console.log("Data passed here:", data);
+        console.log("Popular Dishes =>", data);
         setPopularDishes(data);
       })
       .catch((err) => console.log(err));
@@ -52,10 +52,10 @@ export default function HomePage() {
         page: 1,
         limit: 4,
         order: "createdAt",
-        // productCollection: ProductCollection.DISH,
+        productCollection: ProductCollection.DISH,
       })
       .then((data) => {
-        console.log("Data passed here:", data);
+        console.log("Fresh Menu =>", data);
         setNewDishes(data);
       })
       .catch((err) => console.log(err));
