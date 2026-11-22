@@ -33,7 +33,7 @@ export default function HomePage() {
 
     /** POPULAR DISHES **/
     product
-      .getProduct({
+      .getProducts({
         page: 1,
         limit: 4,
         order: "productViews",
@@ -48,7 +48,7 @@ export default function HomePage() {
     /** NewDISHES - FRESH MENU **/
 
     product
-      .getProduct({
+      .getProducts({
         page: 1,
         limit: 4,
         order: "createdAt",

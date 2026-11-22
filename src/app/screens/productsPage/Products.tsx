@@ -44,7 +44,7 @@ export default function Products() {
   useEffect(() => {
     const product = new ProductService();
     product
-      .getProduct(productSearch)
+      .getProducts(productSearch)
       .then((data) => setProducts(data))
       .catch((err) => console.log(err));
   }, [productSearch]);
