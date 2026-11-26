@@ -196,6 +196,3 @@ export default function HomeNavbar(props: HomeNavbarProps) {
     </div>
   );
 }
-function useGlobalsl(): { setAuthMember: any } {
-  throw new Error("Function not implemented.");
-}

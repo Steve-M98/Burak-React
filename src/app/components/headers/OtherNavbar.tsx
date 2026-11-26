@@ -21,7 +21,6 @@ interface OtherNavbarProps {
   onRemove: (item: CartItem) => void;
   onDelete: (item: CartItem) => void;
   onDeleteAll: () => void;
-  setSignupOpen: (isOpen: boolean) => void;
   setLoginOpen: (isOpen: boolean) => void;
   anchorEl: HTMLElement | null;
   handleLogoutClick: (e: React.MouseEvent<HTMLElement>) => void;
@@ -36,7 +35,6 @@ export default function OtherNavbar(props: OtherNavbarProps) {
     onRemove,
     onDelete,
     onDeleteAll,
-    setSignupOpen,
     setLoginOpen,
     anchorEl,
     handleLogoutClick,

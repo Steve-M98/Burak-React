@@ -13,9 +13,7 @@ import AuthenticationModal from "./components/auth";
 import "../css/app.css";
 import "../css/navbar.css";
 import "../css/footer.css";
-import { T } from "../lib/types/common";
 import { sweetErrorHandling, sweetTopSuccessAlert } from "../lib/sweetAlert";
-import { Logout, Message } from "@mui/icons-material";
 import { Messages } from "../lib/config";
 import MemberService from "./services/MemberService";
 import { useGlobals } from "./hooks/useGlobals";
@@ -79,7 +77,6 @@ function App() {
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
-          setSignupOpen={setSignupOpen}
           setLoginOpen={setLoginOpen}
           anchorEl={anchorEl}
           handleLogoutClick={handleLogoutClick}
