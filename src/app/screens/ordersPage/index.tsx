@@ -1,4 +1,4 @@
-import { useState, SyntheticEvent } from "react";
+import { useState, SyntheticEvent, useEffect } from "react";
 import { Container, Stack, Box } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -11,7 +11,9 @@ import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { setPausedOrders, setProcessOrders, setFinishedOrders } from "./slice";
 import "../../../css/order.css";
-import { Order } from "../../../lib/types/orders";
+import { Order, OrderInquiry } from "../../../lib/types/orders";
+import { OrderStatus } from "../../../lib/enums/order.enum";
+import OrderService from "../../services/OrderService";
 
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -23,8 +25,33 @@ const actionDispatch = (dispatch: Dispatch) => ({
 export default function OrdersPage() {
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
-
   const [value, setValue] = useState("1");
+  const [orderInquiry, setOrderInquiry] = useState<OrderInquiry>({
+    page: 1,
+    limit: 5,
+    orderStatus: OrderStatus.PAUSE,
+  });
+
+  useEffect(() => {
+    const order = new OrderService();
+
+    order
+      .getMyorders({ ...orderInquiry, orderStatus: OrderStatus.PAUSE })
+      .then((data) => setPausedOrders(data))
+      .catch((err) => console.log(err));
+
+    order
+      .getMyorders({ ...orderInquiry, orderStatus: OrderStatus.PROCESS })
+      .then((data) => setProcessOrders(data))
+      .catch((err) => console.log(err));
+
+    order
+      .getMyorders({ ...orderInquiry, orderStatus: OrderStatus.FINISH })
+      .then((data) => setFinishedOrders(data))
+      .catch((err) => console.log(err));
+  }, [orderInquiry]);
+
+  /** HANDLERS **/
 
   const handleChange = (e: SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -64,11 +91,13 @@ export default function OrdersPage() {
                 <img
                   src={"/icons/default-user.svg"}
                   className={"order-user-avatar"}
+                  alt=""
                 />
                 <div className={"order-user-icon-box"}>
                   <img
                     src={"/icons/user-badge.svg"}
                     className={"order-user-prof-img"}
+                    alt=""
                   />
                 </div>
               </div>
@@ -117,10 +146,10 @@ export default function OrdersPage() {
               className={"card-input"}
             />
             <div className={"cards-box"}>
-              <img src={"/icons/western-card.svg"} />
-              <img src={"/icons/master-card.svg"} />
-              <img src={"/icons/paypal-card.svg"} />
-              <img src={"/icons/visa-card.svg"} />
+              <img src={"/icons/western-card.svg"} alt="" />
+              <img src={"/icons/master-card.svg"} alt="" />
+              <img src={"/icons/paypal-card.svg"} alt="" />
+              <img src={"/icons/visa-card.svg"} alt="" />
             </div>
           </Box>
         </Stack>
